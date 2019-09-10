@@ -24,3 +24,8 @@ type CreateRoleReq struct {
 	Slug  string `json:"slug"`
 	Title string `json:"title"`
 }
+
+type CreateUserReq struct {
+	Mobile string   `json:"mobile"`
+	Roles  []string `json:"roles"`
+}
