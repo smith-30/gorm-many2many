@@ -49,3 +49,24 @@ func GetUserRole(context *gin.Context)  {
 	context.JSON(200, roles)
 
 }
+
+func UpdateUser(context *gin.Context)  {
+	userId := context.Param("user_id")
+	var reqdata UpdateUserReq
+	err := context.BindJSON(&reqdata)
+	if err != nil {
+		err.Error()
+	}
+
+	var user User
+	db.Where("ID=  ?", userId).First(&user)
+
+	var roles []Role
+	db.Where("slug IN (?)", reqdata.Roles).Find(&roles)
+
+	user.Mobile = reqdata.Mobile
+	db.Save(&user)
+	db.Model(&user).Association("Roles").Replace(roles)
+
+	context.JSON(200, user)
+}

@@ -29,3 +29,8 @@ type CreateUserReq struct {
 	Mobile string   `json:"mobile"`
 	Roles  []string `json:"roles"`
 }
+
+type UpdateUserReq struct {
+	Mobile string   `json:"mobile"`
+	Roles  []string `json:"roles"`
+}
