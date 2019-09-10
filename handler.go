@@ -35,5 +35,17 @@ func CreateUser(context *gin.Context)  {
 	//user := &User{Mobile:reqdata.Mobile}
 	//newUser := db.Create(&user).Association("Roles").Append(roles)
 
-	context.JSON(200, newUser)
+	context.JSON(201, newUser)
+}
+
+func GetUserRole(context *gin.Context)  {
+	userId := context.Param("user_id")
+
+	var roles []Role
+	var user User
+	db.Where("ID=  ?", userId).First(&user)
+	db.Model(&user).Association("Roles").Find(&roles)
+
+	context.JSON(200, roles)
+
 }
