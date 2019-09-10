@@ -18,6 +18,8 @@ func setupRouter() *gin.Engine {
 	apiRouter.POST("/roles", CreateRole)
 	apiRouter.POST("/users", CreateUser)
 	apiRouter.PUT("/users/:user_id", UpdateUser)
+	apiRouter.DELETE("/users/:user_id", DeleteUser)
+
 	apiRouter.GET("/users/:user_id", GetUserRole)
 
 	return r

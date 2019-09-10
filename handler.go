@@ -70,3 +70,14 @@ func UpdateUser(context *gin.Context)  {
 
 	context.JSON(200, user)
 }
+
+func DeleteUser(context *gin.Context)  {
+	userId := context.Param("user_id")
+
+	var user User
+	db.Where("ID=  ?", userId).First(&user)
+	db.Delete(&user)
+	db.Model(&user).Association("Roles").Clear()
+
+	context.JSON(200, user)
+}
