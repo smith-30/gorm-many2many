@@ -19,3 +19,8 @@ type Role struct {
 
 	Users []User `gorm:"many2many:user_roles"`
 }
+
+type CreateRoleReq struct {
+	Slug  string `json:"slug"`
+	Title string `json:"title"`
+}

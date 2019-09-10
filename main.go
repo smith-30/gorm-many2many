@@ -13,6 +13,9 @@ func main() {
 
 func setupRouter() *gin.Engine {
 	r := gin.Default()
+	apiRouter := r.Group("/api")
+
+	apiRouter.POST("/roles", CreateRole)
 
 	return r
 }
